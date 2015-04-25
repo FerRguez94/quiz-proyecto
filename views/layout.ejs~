@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Preguntas</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+<body>
+    <div id="page-wrap">
+	<header class="main" id="h1">
+    	<h1>Bienvenido al layout</h1>
+	</header>
+    	
+	<section class="main" id="s1">
+	<%. body %>
+	</section>
+
+<footer class="main" id="f1">
+esto es el footer
+</footer>
+
+    </div>  
+</body>
+</html>
