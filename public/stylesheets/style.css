@@ -6,3 +6,33 @@ body {
 a {
   color: #00B7FF;
 }
+
+footer{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+display: block;
+padding-left:1em;
+color: #000;
+text-decoration: none;
+text-align: center;
+font-size: 0.9em;
+border-bottom-width: 1px;
+border-bottom-style: solid;
+border-bottom-color: #CCC;
+background-color: #EAEAEA;
+border-top-width: 1px;
+border-top-style: solid;
+border-top-color: #CCC;
+border-right-width: 1px;
+border-right-style: solid;
+border-right-color: #CCC;
+border-left-width: 1px;
+border-left-style: solid;
+border-left-color: #CCC;
+margin: 0px;
+margin-top: 1em;
+} 
+
+

@@ -11,11 +11,15 @@
 	</header>
     	
 	<section class="main" id="s1">
-	<%. body %>
+	<%- body %>
 	</section>
 
-<footer class="main" id="f1">
-esto es el footer
+ <footer>
+			Correo: <a id="link" href="mailto:f.rodriguezv@alumnos.upm.es"> f.rodriguezv@alumnos.upm.es</a> 
+			<br> Nombre: Fernando Rodríguez Varela<br>
+    <script type="text/javascript">
+				document.write(new Date());
+			</script>
 </footer>
 
     </div>  
