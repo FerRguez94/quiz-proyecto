@@ -9,9 +9,9 @@ exports.question=function(req,res) {
 exports.answer=function(req,res) {
 	models.Quiz.find(req.params.quizId).then( function(quiz) {
 	if (req.query.respuesta === quiz.respuesta ){
-		res.render('quizes/answer', {respuesta:'Correcto'});
+		res.render('quizes/answer', {quiz: quiz, respuesta:'Correcto'});
 	} else {
-		res.render('quizes/answer', {respuesta:'Incorrecto'});	
+		res.render('quizes/answer', {quiz: quiz, respuesta:'Incorrecto'});	
 	}
 })
 };
@@ -34,3 +34,12 @@ exports.index= function(req,res) {
 		res.render('quizes/index.ejs',{quizes: quizes});
 	})
 };
+
+exports.new= function(req,res) {
+	var quiz= models.Quiz.build(
+		{pregunta: "Pregunta", respuesta: "Respuesta"}
+	);
+	res.render('quizes/new',{quiz: quiz});
+};
+
+}
