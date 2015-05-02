@@ -16,7 +16,7 @@
 
  <footer>
 			Correo: <a id="link" href="mailto:f.rodriguezv@alumnos.upm.es"> f.rodriguezv@alumnos.upm.es</a> 
-			<br> Nombre: Fernando Rodríguez Varela<br>
+			<br> <a id="link" href="https://github.com/FerRguez94/quiz-proyecto"> Repositorio en Git</a> <br>
     <script type="text/javascript">
 				document.write(new Date());
 			</script>
