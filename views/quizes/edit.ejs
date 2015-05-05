@@ -1,0 +1,12 @@
+<h1 onload="carga()">
+ Edite la pregunta <p>
+</h1>
+<form method="post" action="/quizes/<%= quiz.quizId %>?_method=put" >
+<% include _form.ejs %>
+</form>
+<script>
+function carga(){
+alert("hola");
+}
+
+</script>
