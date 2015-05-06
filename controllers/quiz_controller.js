@@ -58,7 +58,7 @@ exports.create= function(req,res) {
 exports.edit = function(req,res){
 	
 	models.Quiz.find(req.params.quizId).then(function(quiz) {
-	res.render('quizes/edit',{quiz: quiz, errors: []});
+	res.render('quizes/edit',{quiz: req.params.quizId, errors: []});
 	} )
 };
 
