@@ -14,6 +14,8 @@ var storage = process.env.DATABASE_STORAGE;
 var Sequelize = require('sequelize');
 var comment_path=path.join(__dirname,'comment');
 
+var user_path = path.join(__dirname,'user');
+
 
 var sequelize = new Sequelize(DB_name, user, pwd,
  {
@@ -29,21 +31,35 @@ var sequelize = new Sequelize(DB_name, user, pwd,
 var sequelize = new Sequelize(null, null, null, {dialect: "sqlite", storage: "quiz.sqlite"});
 var Quiz = sequelize.import(path.join(__dirname,'quiz'));
 var Comment = sequelize.import(comment_path);
+var User = sequelize.import(user_path);
 
 Comment.belongsTo(Quiz);
 Quiz.hasMany(Comment);
+
+Quiz.belongsTo(User);
+User.hasMany(Quiz);
+
 sequelize.sync().then(function() {
-	Quiz.count().then(function (count){
+	User.count().then(function (count){
 		if (count === 0) {
-			Quiz.create({ pregunta: 'capital de italia',
-				      respuesta: 'Roma'
-				   });
-			Quiz.create({ pregunta: 'capital de Portugal',
-				      respuesta: 'Lisboa'})
-   	
-			.then(function(){console.log('base de datos iniciada')});
+			User.bulkCreate(
+				[{username:'admin', password: '1234', isAdmin: true},
+				 {username:'pepe', password: '5678',}]
+			).then(function(){ 
+				console.log('base de datos iniciada');
+				Quiz.count().then(function(count){
+					if (count==0) {
+						User.bulkCreate(
+						[{pregunta:'capital italia', respuesta: 'roma', UserId: 2},
+						{pregunta:'capital portugal', respuesta: 'lisboa',UserId:2}]
+						).then(function(){console.log('base de datos iniciada');});
+					}
+				});
+
+			});
 		};
 	});
 });
 exports.Quiz = Quiz;
 exports.Comment = Comment;
+exports.User=User;
