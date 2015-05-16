@@ -104,5 +104,18 @@ exports.update= function(req,res) {
 };
 
 exports.destroy=function(req,res){
-req.quiz.destroy().then( function(){ res.redirect('/quizes');}).catch(function(error){next(error)});
+	req.quiz.destroy().then( function(){ res.redirect('/quizes');}).catch(function(error){next(error)});
 }
+
+exports.ownershipRequired = function(req, res, next) {
+	var objQuizOwner=req.quiz.UserId;
+	var logUser = req.session.user.id;
+	var isAdmin = req.session.user.isAdmin;
+	if (isAdmin || logUser===objQuizOwner) {
+		next();
+	} else {
+		res.redirect('/');
+	}
+};
+
+

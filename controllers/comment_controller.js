@@ -38,3 +38,22 @@ exports.publish= function(req,res) {
 	req.comment.save( {fields: ["publicado"]}).then(function(){ res.redirect('/quizes/'+req.params.quizId); }).catch(
 	function(error) {next(error)});
 };
+
+exports.ownershipRequired = function(req, res, next) {
+	models.Quiz.find({
+		where:{ id: Number(req.comment.QuizId) }
+	}).then(function(quiz) {
+		if (quiz) {	
+
+			var objQuizOwner=req.quiz.UserId;
+			var logUser = req.session.user.id;
+			var isAdmin = req.session.user.isAdmin;
+			if (isAdmin || logUser===objQuizOwner) {
+				next()
+			} else {
+				res.redirect('/');
+			}
+		} else { next(new Error('Mo existe el 	uiz'))}
+	}).catch(function(error){next(error)});
+
+};

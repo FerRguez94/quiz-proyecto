@@ -30,7 +30,8 @@ exports.create= function(req,res) {
 			res.redirect("/login");
 			return;
 		}
-		req.session.user={id:user.id, username:user.username};
+		req.session.user={id:user.id, username:user.username,  isAdmin:user.isAdmin, tiempo:new Date().getTime()};
+		req.tiempo=1;
 		res.redirect(req.session.redir.toString());
 		});
 };

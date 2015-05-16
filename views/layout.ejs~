@@ -2,7 +2,8 @@
 <html>
   <head>
     <title>Preguntas</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+     
+         <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
 <body>
     <div id="page-wrap">
@@ -11,7 +12,7 @@
 		<span class="rigth"><a href="/login"> Login </a> <a href="/user"> Sign up </a> </span>
 	<%}else{%>
 		<span class="rigth"><%=session.user.username%>
-			 <a href="/user/<%=session.user.id%>/edit">settings</a>
+			 <a href="/user/"+<%=session.user.id%>+"/edit">settings</a>
 			 <a href="/logout">Logout</a>
 		</span>
 	<%}%>

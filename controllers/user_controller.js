@@ -94,3 +94,14 @@ exports.destroy = function(req, res) {
 		res.redirect('/');
 	}).catch(function(error){next(error)});
 };
+
+exports.ownershipRequired = function(req, res, next) {
+	var objUser=req.user.id;
+	var logUser = req.session.user.id;
+	var isAdmin = req.session.user.isAdmin;
+	if (isAdmin || logUser===objUser) {
+		next();
+	} else {
+		res.redirect('/');
+	}
+};

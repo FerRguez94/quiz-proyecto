@@ -39,6 +39,23 @@ app.use(function(req,res,next){
 	next();
 
 });
+app.use('/',function(req,res,next){
+	console.log("middleware ejecutandose");
+	if (req.session.user) {
+		currentTime=new Date().getTime();	
+		var diferencia=currentTime-req.session.user.tiempo;
+		if (diferencia>10000) {
+				console.log("destruyendo al usuario");
+				var sessionController = require('./controllers/session_controller').destroy(req,res);
+				
+		} else {
+		
+			req.session.user.tiempo=currentTime; 
+		}
+	}
+	next();
+	});
+
 app.use('/', routes);
 
 
