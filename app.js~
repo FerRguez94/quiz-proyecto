@@ -49,8 +49,9 @@ app.use('/',function(req,res,next){
 				var sessionController = require('./controllers/session_controller').destroy(req,res);
 				
 		} else {
-		console.log("usuario iniciado"+diferencia);
-		req.session.user.tiempo=currentTime; 
+		
+			req.session.user.tiempo=currentTime; 
+			req.tiempo.a
 		}
 	}
 	next();

@@ -27,6 +27,7 @@ router.post('/quizes/create',sessionController.loginRequired, quizController.cre
 router.get('/quizes/:quizId(\\d+)/edit',sessionController.loginRequired, quizController.ownershipRequired, quizController.edit);
 router.put('/quizes/:quizId(\\d+)',sessionController.loginRequired, quizController.ownershipRequired, quizController.update);
 router.delete('/quizes/:quizId(\\d+)',sessionController.loginRequired, quizController.ownershipRequired, quizController.destroy);
+router.get('/quizes/statistics',quizController.statistics);
 
 router.get('/quizes/:quizId(\\d+)/comments/new',commentController.new);
 router.post('/quizes/:quizId(\\d+)/comments',commentController.create);
@@ -37,5 +38,6 @@ router.post('/user', userController.create);
 router.get('/user/:userId(\\d+)/edit',sessionController.loginRequired, userController.ownershipRequired, userController.edit);
 router.put('/user/:userId(\\d+)',sessionController.loginRequired, userController.ownershipRequired, userController.update);
 router.delete('/user/:userId(\\d+)',sessionController.loginRequired, userController.ownershipRequired, userController.destroy);
+
 
 module.exports = router;

@@ -1,0 +1,6 @@
+pagina de estadisticas
+<p> numero de preguntas. <%=preguntas%>
+<p> numero de comentarios. <%=comentarios%>
+<p> numero de comentarios medio por pregunta. <%if (preguntas) {%> <%=comentarios/preguntas%> <% } else {%> 0<%}%> 
+<p> numero de quizes con comentarios. <%=quizcomentado%>
+<p> numero de quizes sin comentarios. <%=preguntas-quizcomentado%>

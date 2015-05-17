@@ -104,7 +104,19 @@ exports.update= function(req,res) {
 };
 
 exports.destroy=function(req,res){
-	req.quiz.destroy().then( function(){ res.redirect('/quizes');}).catch(function(error){next(error)});
+	quizId=req.quiz.id;
+	models.Quiz.find({
+		where: {id: Number(quizId)},
+		include: [{ model: models.Comment }]
+		}).then(
+		function(quiz){
+			if(quiz){
+				for (i in quiz.Comments)
+					quiz.Comments[i].destroy();
+				
+				quiz.destroy().then( function(){ res.redirect('/quizes');}).catch(function(error){next(error)})
+			}
+		})
 }
 
 exports.ownershipRequired = function(req, res, next) {
@@ -118,4 +130,31 @@ exports.ownershipRequired = function(req, res, next) {
 	}
 };
 
+exports.statistics = function(req,res) {
+	
+	models.Quiz.count().then(function(preguntas){
+			
+		models.Comment.count().then(function(comentarios){	
+		
+			models.Quiz.findAll({
+				include: [{ model: models.Comment }]
+			}).then(function(quizes){
+					quizcomentado=0;
+					if(quizes){
+						for(i in quizes){
+							if (quizes[i].Comments.length)						
+								quizcomentado++
+						}
+						
+					} else {
+						
+					}
+					res.render('quizes/statistics',{preguntas:preguntas, comentarios:comentarios, 						quizcomentado:quizcomentado,errors:[]});
+				
+				})
 
+
+		})
+	})
+
+};
