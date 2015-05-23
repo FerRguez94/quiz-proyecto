@@ -29,7 +29,7 @@
 	<a href="/"> Inicio </a>
     	<a href="/quizes"> Preguntas </a>
 	<%if(session.user) {%>
-		<span><a href="/user/"+<%=session.user.id%>+"/quizes">Mis preguntas </a></span>
+		<span><a href="/user/<%=session.user.id%>/quizes">Mis preguntas </a></span>
 	<%}%>
 	<section class="main" id="s1">
 	<% if(errors.length) {%>

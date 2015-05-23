@@ -22,6 +22,7 @@ exports.answer=function(req,res) {
 exports.author=function(req,res){
 res.render('author',{quiz: req.quiz,errors: []});
 };
+
 // GET /quizes/id:/answer
 exports.show= function(req,res) {
 	

@@ -44,7 +44,7 @@ app.use('/',function(req,res,next){
 	if (req.session.user) {
 		currentTime=new Date().getTime();	
 		var diferencia=currentTime-req.session.user.tiempo;
-		if (diferencia>10000) {
+		if (diferencia>120000) {
 				console.log("destruyendo al usuario");
 				var sessionController = require('./controllers/session_controller').destroy(req,res);
 				

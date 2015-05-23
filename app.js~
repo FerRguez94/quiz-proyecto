@@ -51,7 +51,7 @@ app.use('/',function(req,res,next){
 		} else {
 		
 			req.session.user.tiempo=currentTime; 
-			req.tiempo.a
+			
 		}
 	}
 	next();

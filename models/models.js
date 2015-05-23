@@ -33,11 +33,16 @@ var Quiz = sequelize.import(path.join(__dirname,'quiz'));
 var Comment = sequelize.import(comment_path);
 var User = sequelize.import(user_path);
 
+
 Comment.belongsTo(Quiz);
 Quiz.hasMany(Comment);
 
 Quiz.belongsTo(User);
 User.hasMany(Quiz);
+
+favourites = sequelize.define('favourites');
+User.belongsToMany(Quiz, {through:favourites});
+Quiz.belongsToMany(User,{through:favourites});
 
 sequelize.sync().then(function() {
 	User.count().then(function (count){
@@ -63,3 +68,4 @@ sequelize.sync().then(function() {
 exports.Quiz = Quiz;
 exports.Comment = Comment;
 exports.User=User;
+exports.Favourites=favourites;
