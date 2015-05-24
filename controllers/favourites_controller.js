@@ -29,7 +29,7 @@ exports.show= function(req,res) {
 			}
 			console.log("longitud"+quizes.length);
 			models.Quiz.findAll( {where:{ id: quizes} }).then(function(quizess){
-				res.render('quizes/index.ejs',{quizes: quizess,errors: []});
+				res.render('quizes/index.ejs',{quizes: quizess,errors: [],ids:"TodosSonFavoritos"});
 			})	
 		});
 

@@ -13,9 +13,18 @@
 			</td>
 		<%}%>
 			<td>
-			<form method="post" action="/user/<%= session.user.id %>/favourites/<%= quizes[i].id %>?_method=put">
+			
+			<% if (ids!="TodosSonFavoritos"&&ids.indexOf(quizes[i].id)===-1) { %>
+				<form method="post"
+				 action="/user/<%= session.user.id %>/favourites/<%= quizes[i].id %>?_method=put">
 					<button type="submit"> favorito </button>
-			</form>
+				</form>
+			<% } else { %>
+				<form method="post"
+				 action="/user/<%= session.user.id %>/favourites/<%= quizes[i].id %>?_method=put">
+					<button type="submit" onClick="return confirm('Borrar favorito?');"> 						Borrar favorito </button>
+				</form>
+			<%}%>
 		</td>
 
 	<%}%>

@@ -50,18 +50,28 @@ exports.index= function(req,res) {
 	var options={};
 	if(req.user){
 		options.where={UserId: req.user.id}
-	}
-	if (req.query.search){
+	
+	}else if (req.query.search){
 		req.query.search.replace(/ /g,'%');
-		models.Quiz.findAll({where:["pregunta like ?","%"+req.query.search+"%"],order: '`pregunta` ASC'}).then(function(quizes) {
-		res.render('quizes/index.ejs',{quizes: quizes,errors: []});
-		})
-		
-	} else{
-		models.Quiz.findAll(options).then(function(quizes) {
-			res.render('quizes/index.ejs',{quizes: quizes,errors: []});
-		})
+		options={where:["pregunta like ?","%"+req.query.search+"%"],order: '`pregunta` ASC'};
 	}
+	
+	models.Quiz.findAll(options).then(function(quizes) {
+		var usuario=0;
+		if (req.session.user) {
+			usuario=req.session.user.id;
+			
+		}
+		models.Favourites.findAll({where:{UserId: Number(usuario)}}).then(function (entrada) {
+			var ids=[];			
+			for (i in entrada) {
+				ids.push(Number(entrada[i].QuizId));
+			}
+			console.log("TAMAÑO DE LA LISTA "+ids.length);
+			res.render('quizes/index.ejs',{quizes: quizes,errors: [],ids: ids});
+			})
+		})
+	
 };
 
 exports.new= function(req,res) {

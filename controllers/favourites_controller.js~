@@ -10,7 +10,7 @@ exports.update= function(req,res) {
 		if (result) {
 			console.log("el usuario ya lo tiene como favorito");
 			models.Favourites.find({where:{ UserId: Number(usuario.id), QuizId: Number(quiz) }}).then(
-				function(entrada) {entrada.destroy().then(function(){console.log("destruido")}); }
+				function(entrada) {entrada.destroy().then(function(){console.log("destruido")}); });
 		} else {	
 			usuario.addQuiz(quiz);
 			console.log("usuario "+usuario.id+" marco como avorito "+quiz);
@@ -29,7 +29,7 @@ exports.show= function(req,res) {
 			}
 			console.log("longitud"+quizes.length);
 			models.Quiz.findAll( {where:{ id: quizes} }).then(function(quizess){
-				res.render('quizes/index.ejs',{quizes: quizess,errors: []});
+				res.render('quizes/index.ejs',{quizes: quizess,errors: [],ids:"todosSonFavoritos"});
 			})	
 		});
 

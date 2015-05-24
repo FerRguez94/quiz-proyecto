@@ -26,11 +26,11 @@
 	<%}%>
     	<h1>Quiz el juego de las preguntas </h1>
 	</header>
-	<a href="/"> Inicio </a>
-    	<a href="/quizes"> Preguntas </a>
+	<p><a href="/"> Inicio </a></p>
+    	<p><a href="/quizes"> Preguntas </a></p>
 	<%if(session.user) {%>
-		<span><a href="/user/<%=session.user.id%>/quizes">Mis preguntas </a></span>
-		<span><a href="/user/<%=session.user.id%>/favourites">Mis favoritos </a></span>
+		<span> <p><a href="/user/<%=session.user.id%>/quizes">Mis preguntas </a>
+		<p><a href="/user/<%=session.user.id%>/favourites">Mis favoritos </a></span>
 	<%}%>
 	<section class="main" id="s1">
 	<% if(errors.length) {%>
